@@ -8,9 +8,53 @@ one-off tools.
 > **Status:** alpha (`v0.1.0-alpha.1`). Berth is experimental: expect breaking
 > changes between releases. The full specification is in [SPEC.md](SPEC.md).
 
+## Prerequisites
+
+Berth targets Linux. For the prebuilt installer you need `curl`, `sha256sum`,
+`install`, and usually `sudo`. On Fedora:
+
+```sh
+sudo dnf install -y curl coreutils sudo
+```
+
+Debian/Ubuntu:
+
+```sh
+sudo apt update && sudo apt install -y curl coreutils sudo
+```
+
+Arch Linux:
+
+```sh
+sudo pacman -S --needed curl coreutils sudo
+```
+
+For the Cargo method you also need Rust, Cargo, and a C compiler. On Fedora:
+
+```sh
+sudo dnf install -y rust cargo gcc
+```
+
+Debian/Ubuntu:
+
+```sh
+sudo apt update && sudo apt install -y build-essential cargo rustc
+```
+
+Arch Linux:
+
+```sh
+sudo pacman -S --needed base-devel rust cargo
+```
+
+You can also install Rust with [rustup](https://rustup.rs), then reopen your
+shell so `$HOME/.cargo/bin` is on `PATH`.
+
 ## Installation
 
-On Linux x86_64, install the latest release to `/usr/local/bin/bh`:
+### Prebuilt binary (Linux x86_64)
+
+Once the alpha release is published, install it to `/usr/local/bin/bh`:
 
 ```sh
 curl -fsSL https://github.com/vylonvygh/Berth_PM/releases/latest/download/install.sh | sudo sh
@@ -20,8 +64,16 @@ The installer downloads the release binary and `checksums.txt`, verifies the
 SHA-256 checksum, then installs it as `/usr/local/bin/bh`. Set `BERTH_VERSION`
 to pin a specific release tag.
 
-To build from source instead, run `cargo build --release` and use
-`target/release/berth`.
+### From Cargo (works now, needs Rust)
+
+```sh
+cargo install --git https://github.com/vylonvygh/Berth_PM.git --branch main
+sudo install -m 0755 "$HOME/.cargo/bin/berth" /usr/local/bin/bh
+```
+
+Cargo installs the executable as `berth`; the second command copies it to
+`/usr/local/bin/bh`. Check the result with `bh --version`. If `bh` is not found,
+reopen your shell or confirm `/usr/local/bin` is on `PATH`.
 
 ## How it works
 
@@ -67,11 +119,8 @@ limit or need access to private repositories.
 
 ## Requirements
 
-- Linux x86_64 for the published release, with `/usr/local/bin` writable via `sudo`
-- `curl`, `sha256sum`, and `install` for the installer
-- Rust toolchain (edition 2021 or newer) to build from source
-
-No distro-specific packages or shell profile changes are required.
+See Prerequisites for install-time tools. Berth itself has no distro-specific
+runtime packages and makes no shell profile changes.
 
 ## License
 
