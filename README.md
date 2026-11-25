@@ -54,7 +54,10 @@ shell so `$HOME/.cargo/bin` is on `PATH`.
 
 ### Prebuilt binary (Linux x86_64)
 
-Once the alpha release is published, install it to `/usr/local/bin/bh`:
+> **Not usable yet:** this `curl` installer needs a published GitHub release,
+> which does not exist yet. Use the Cargo method below until it does.
+
+When the alpha release is published, this will install to `/usr/local/bin/bh`:
 
 ```sh
 curl -fsSL https://github.com/vylonvygh/Berth_PM/releases/latest/download/install.sh | sudo sh
