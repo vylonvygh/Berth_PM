@@ -5,8 +5,8 @@ standalone executables. It installs, updates, lists, rolls back, and removes
 binaries the way `brew`, `apt`, or `npm` do — scoped to one user managing
 one-off tools.
 
-> **Status:** the v0.1 specification is complete in [SPEC.md](SPEC.md).
-> The Rust implementation has not been written yet.
+> **Status:** v0.1 is implemented in Rust. Build with `cargo build --release`
+> and run `berth --help`; the full specification is in [SPEC.md](SPEC.md).
 
 ## How it works
 
@@ -21,7 +21,7 @@ Old versions stay in the store after an update, which makes rollback possible.
 Removing a tool deletes only the symlink and its registry entry; the cached
 binary remains.
 
-## Planned commands (v0.1)
+## Commands (v0.1)
 
 | Command | Description |
 |---|---|
